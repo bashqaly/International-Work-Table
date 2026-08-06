@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وێبسایتی داینامیکی بێ سنوور</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        p.subtitle {
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .display-box {
+            background-color: #eef2f7;
+            border: 2px dashed #3498db;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .date-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+
+        .status-text {
+            font-size: 14px;
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .footer-text {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>وێبسایتی داینامیکی ڵایڤ</h1>
+        <p class="subtitle">ئەم سیستمە بە شێوەیەکی بێ سنوور بەردەوام کار دەکات</p>
+
+        <div class="display-box">
+            <div id="current-date" class="date-text">تکایە کلیک بکە...</div>
+            <div id="status" class="status-text">سیستم ئامادەیە</div>
+        </div>
+
+        <button class="btn" onclick="updateDynamicData()">نوێکردنەوە بە کلیکێک</button>
+
+        <div class="footer-text">
+            سیستمی ئۆتۆماتیکی بێ سنوور &copy; <span id="year"></span>
+        </div>
+    </div>
+
+    <script>
+        // بەشی JavaScript بۆ کارکردنی داینامیکی و بێ سنوور
+        
+        function updateDynamicData() {
+            const now = new Date();
+            
+            // کات و بەرواری داینامیکی (دەتوانێت بۆ هەموو ساڵێک بەبێ سنوور کاربکات)
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            
+            const formattedDate = now.toLocaleDateString('ckb-IQ', options);
+            
+            // نیشاندانی زانیارییەکان لەسەر ڕووبەر
+            document.getElementById('current-date').innerText = formattedDate;
+            document.getElementById('status').innerText = '⚡ سەرکەوتووانە لە کاتی ڕاستەقینەدا نوێکرایەوە!';
+        }
+
+        // دانانی ساڵی جاری بۆ بەشی Footer (بۆ ئەوەی ساڵەکەش هەمیشە داینامیکی بێت)
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        // دەستبەجێ خوێندنەوە لە کاتی کەوتنەگەڕی پەڕەکە
+        updateDynamicData();
+    </script>
+</body>
+</html>
